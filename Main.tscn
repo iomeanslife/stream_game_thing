@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cc84icb5usx00"]
+
+[ext_resource type="Script" path="res://Main.gd" id="1_en8i4"]
+[ext_resource type="Texture2D" uid="uid://4ygery60r2ol" path="res://ursalogo.png" id="1_k0tud"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ftlwt"]
+size = Vector2(542, 681)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_en8i4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(604, 322)
+texture = ExtResource("1_k0tud")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(603, 330.5)
+shape = SubResource("RectangleShape2D_ftlwt")
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

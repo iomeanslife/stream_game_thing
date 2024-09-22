@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://l3qry4gnr1e6"]
+
+[ext_resource type="Script" path="res://CSGBox3D.gd" id="1_5cv7a"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vho0p"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.234188)
+material = SubResource("StandardMaterial3D_vho0p")
+script = ExtResource("1_5cv7a")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.84379)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.752104, 0.659044, 0, -0.659044, 0.752104, 0, 1.46822, 1.74464)
