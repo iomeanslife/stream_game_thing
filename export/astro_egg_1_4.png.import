@@ -2,22 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bj4uejumuoocu"
-path.s3tc="res://.godot/imported/astro_egg_1_4.png-e12473a73088d020337ef958171dc90b.s3tc.ctex"
+uid="uid://cqiwd1t0xf27w"
+path="res://.godot/imported/astro_egg_1_4.png-e12473a73088d020337ef958171dc90b.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 generator_parameters={}
 
 [deps]
 
 source_file="res://export/astro_egg_1_4.png"
-dest_files=["res://.godot/imported/astro_egg_1_4.png-e12473a73088d020337ef958171dc90b.s3tc.ctex"]
+dest_files=["res://.godot/imported/astro_egg_1_4.png-e12473a73088d020337ef958171dc90b.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

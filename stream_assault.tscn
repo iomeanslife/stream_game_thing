@@ -1,21 +1,60 @@
-[gd_scene load_steps=6 format=3 uid="uid://buy1nvve1x7kk"]
+[gd_scene load_steps=9 format=3 uid="uid://buy1nvve1x7kk"]
 
-[ext_resource type="PackedScene" uid="uid://bff7stvslhs8" path="res://export/astro_egg_1.gltf" id="1_55b2v"]
-[ext_resource type="Script" path="res://stream_assault.gd" id="1_ps6sw"]
-[ext_resource type="Script" path="res://export/astro_egg_1.gd" id="2_r2hac"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_b7mwv"]
-radius = 0.7
+[ext_resource type="PackedScene" uid="uid://dq5753s784jdw" path="res://export/astro_egg_1.gltf" id="1_55b2v"]
+[ext_resource type="Script" path="res://stream_assault.gd" id="1_emt0r"]
+[ext_resource type="Script" path="res://astro_egg_1.gd" id="1_mctjl"]
+[ext_resource type="PackedScene" uid="uid://ywgd33f3hrkr" path="res://export/enemy.gltf" id="4_hnuvm"]
+[ext_resource type="PackedScene" uid="uid://25iy6ag1v1hr" path="res://export/sword.gltf" id="5_ir2fp"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aj7n2"]
 
+[sub_resource type="SystemFont" id="SystemFont_nk557"]
+subpixel_positioning = 0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p66pl"]
+
 [node name="Node3D" type="Node3D"]
 transform = Transform3D(1.06376, 0, 0, 0, 1.06376, 0, 0, 0, 1.06376, 0, 0, 0)
-script = ExtResource("1_ps6sw")
+script = ExtResource("1_emt0r")
+
+[node name="enemy" parent="." instance=ExtResource("4_hnuvm")]
+transform = Transform3D(-3.42661, 0, 1.06399, 0, 3.588, 0, -1.06399, 0, -3.42661, 2.10235, 0, 0)
+
+[node name="cuboid" parent="enemy/Node2" index="0"]
+transform = Transform3D(1, 0, -2.71863e-08, 0, 1, 0, 3.75144e-08, 0, 1, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.992757, -0.0477121, 0.110256, 3.20101e-16, 0.917755, 0.397148, -0.120137, -0.394271, 0.911108, 1.2, 1.5, 3)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.995737, -0.0909887, 0.0151056, 0.0620217, 0.781749, 0.620501, -0.0682673, -0.616919, 0.78406, 1.95041, 1.52022, 2.65435)
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+scale = Vector2(3, 3)
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SubViewportContainer/SubViewport"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CheckButton" type="CheckButton" parent="SubViewportContainer/SubViewport/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_aj7n2")
+button_pressed = true
+
+[node name="Button" type="Button" parent="SubViewportContainer/SubViewport/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_nk557")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_p66pl")
+text = "⚔️"
 
 [node name="astro_egg_1" parent="." instance=ExtResource("1_55b2v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1, 2.08165e-12)
-script = ExtResource("2_r2hac")
+transform = Transform3D(0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 0, 0, 0)
+script = ExtResource("1_mctjl")
 
 [node name="AstroEgg" parent="astro_egg_1/Node2" index="0"]
 transform = Transform3D(0.906308, -0.422618, 0, 0.422618, 0.906308, 0, 0, 0, 1, 0.00671497, -0.520833, -0.189549)
@@ -23,38 +62,18 @@ transform = Transform3D(0.906308, -0.422618, 0, 0.422618, 0.906308, 0, 0, 0, 1, 
 [node name="Arm" parent="astro_egg_1/Node2/AstroEgg" index="3"]
 transform = Transform3D(1, 0, 0, 0, 0.21644, 0.976296, 0, -0.976296, 0.21644, -0.00671497, 0.583333, 0.728612)
 
+[node name="sword" parent="astro_egg_1/Node2/AstroEgg/Arm/tube" index="0" instance=ExtResource("5_ir2fp")]
+transform = Transform3D(0.107278, 0.027035, -1.9274, -1.92581, -0.0816292, -0.108334, -0.0830116, 1.92866, 0.0224327, 0.144802, -0.0130604, 0.437897)
+
 [node name="Arm2" parent="astro_egg_1/Node2/AstroEgg" index="4"]
 transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -0.00671497, 0.583333, -0.474513)
 
 [node name="Leg2" parent="astro_egg_1/Node2/AstroEgg" index="6"]
 transform = Transform3D(0.906308, 0.422618, 0, -0.422618, 0.906308, 0, 0, 0, 1, 0, 0, 0)
 
-[node name="Area3D" type="Area3D" parent="astro_egg_1"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="astro_egg_1/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.105276, 0)
-shape = SubResource("CapsuleShape3D_b7mwv")
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.118369, 0, 0.99297, 0, 1, 0, -0.99297, 0, -0.118369, 2.38014, 1.21065, 0.195146)
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.0777517, -0.623593, 0.777873, 0.0620217, 0.781749, 0.620501, -0.995042, -5.97782e-09, 0.0994587, 1.95041, 1.52022, 2.65435)
-
-[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
-scale = Vector2(3, 3)
-
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
-transparent_bg = true
-
-[node name="CheckButton" type="CheckButton" parent="SubViewportContainer/SubViewport"]
-offset_right = 44.0
-offset_bottom = 24.0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_aj7n2")
-button_pressed = true
-
+[connection signal="toggled" from="SubViewportContainer/SubViewport/HBoxContainer/CheckButton" to="." method="_on_check_button_toggled"]
+[connection signal="pressed" from="SubViewportContainer/SubViewport/HBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="animation_finished" from="astro_egg_1/AnimationPlayer" to="astro_egg_1" method="_on_animation_player_animation_finished"]
-[connection signal="input_event" from="astro_egg_1/Area3D" to="astro_egg_1" method="_on_area_3d_input_event"]
-[connection signal="toggled" from="SubViewportContainer/SubViewport/CheckButton" to="." method="_on_check_button_toggled"]
 
+[editable path="enemy"]
 [editable path="astro_egg_1"]

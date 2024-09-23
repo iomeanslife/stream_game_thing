@@ -8,7 +8,7 @@ func _ready():
 	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_TRANSPARENT,false)
 	get_tree().get_root().set_transparent_background(false)
 	
-	
+	# TODO: fill viewer from twitch api, only followers.
 	pass
 	
 func _process(delta):
@@ -19,3 +19,8 @@ func _on_check_button_toggled(button_pressed):
 	showStuff = button_pressed
 	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_TRANSPARENT,!showStuff)
 	get_tree().get_root().set_transparent_background(!showStuff)
+
+
+func _on_button_pressed():
+	for viewer in viewers:
+		pass
