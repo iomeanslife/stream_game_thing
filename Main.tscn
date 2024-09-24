@@ -1,14 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://cc84icb5usx00"]
+[gd_scene load_steps=9 format=3 uid="uid://cc84icb5usx00"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_g2pg7"]
-[ext_resource type="Script" path="res://Enemy.gd" id="2_23agk"]
-[ext_resource type="PackedScene" uid="uid://ywgd33f3hrkr" path="res://export/enemy.gltf" id="3_vjr2h"]
+[ext_resource type="PackedScene" uid="uid://bvvuekqxksrka" path="res://enemy_scene.tscn" id="2_tw8e5"]
+[ext_resource type="PackedScene" uid="uid://cegpyaaeeadh7" path="res://astro_egg_scene.tscn" id="3_3c0gv"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_txutx"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wxkqp"]
-
-[sub_resource type="SystemFont" id="SystemFont_t31ai"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q6y6v"]
 
@@ -19,11 +17,14 @@ subpixel_positioning = 0
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_g2pg7")
+enemyScene = ExtResource("2_tw8e5")
+astroEggScene = ExtResource("3_3c0gv")
 
 [node name="AstroEggLocation" type="Node3D" parent="."]
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="AstroEggLocation"]
 transform = Transform3D(1, 0, 0, 0, 0.294066, 0, 0, 0, 1, 0, 0, 0)
+visible = false
 mesh = SubResource("BoxMesh_txutx")
 material = SubResource("StandardMaterial3D_wxkqp")
 
@@ -35,19 +36,6 @@ transform = Transform3D(1, 0, 0, 0, 0.332587, 0, 0, 0, 1, 0, 0, 0)
 visible = false
 mesh = SubResource("BoxMesh_txutx")
 material = SubResource("StandardMaterial3D_wxkqp")
-
-[node name="Enemy" type="Node3D" parent="EnemyLocation"]
-script = ExtResource("2_23agk")
-
-[node name="HealthLabel" type="Label3D" parent="EnemyLocation/Enemy"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.17539, 0)
-billboard = 1
-text = "10/10"
-font = SubResource("SystemFont_t31ai")
-font_size = 64
-
-[node name="enemy" parent="EnemyLocation/Enemy" instance=ExtResource("3_vjr2h")]
-transform = Transform3D(-3, 1.04636e-15, -2.62268e-07, 1.04636e-15, 3, -1.04636e-15, 2.62268e-07, -1.04636e-15, -3, 0, 0, 0)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.992757, -0.0477121, 0.110256, 3.20101e-16, 0.917755, 0.397147, -0.120137, -0.394271, 0.911108, 1.2, 1.5, 3)

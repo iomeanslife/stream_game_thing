@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvvuekqxksrka"]
+
+[ext_resource type="Script" path="res://Enemy.gd" id="1_607hv"]
+[ext_resource type="PackedScene" uid="uid://ywgd33f3hrkr" path="res://export/enemy.gltf" id="2_wr5xu"]
+
+[sub_resource type="SystemFont" id="SystemFont_t31ai"]
+
+[node name="Enemy" type="Node3D"]
+script = ExtResource("1_607hv")
+
+[node name="HealthLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.17539, 0)
+billboard = 1
+text = "10/10"
+font = SubResource("SystemFont_t31ai")
+font_size = 64
+
+[node name="enemy" parent="." instance=ExtResource("2_wr5xu")]
+transform = Transform3D(-3, 1.04636e-15, -2.62268e-07, 1.04636e-15, 3, -1.04636e-15, 2.62268e-07, -1.04636e-15, -3, 0, 0, 0)

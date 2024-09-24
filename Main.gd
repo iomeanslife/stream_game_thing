@@ -3,6 +3,13 @@ extends Node3D
 var showStuff = true
 var viewers: Array
 var currentViewerIndex: int
+var currentEnemy: Enemy
+@export var enemyScene: PackedScene
+@export var astroEggScene: PackedScene
+
+
+@onready var enemyLocation = $EnemyLocation
+@onready var astroEggLocation = $AstroEggLocation
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -10,9 +17,11 @@ func _ready():
 	get_tree().get_root().set_transparent_background(false)
 	
 	# TODO: fill viewer from twitch api, only followers.
-	
 	for n in 10:
-		viewers.append(Viewer.createDebug())
+		var astroEggInst : Viewer = astroEggScene.instantiate()
+		astroEggLocation.add_child(astroEggInst)
+		astroEggInst.visible = false
+		viewers.append(astroEggInst)
 	
 func _process(delta):
 	pass
@@ -22,7 +31,12 @@ func _on_check_button_toggled(button_pressed):
 	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_TRANSPARENT,!showStuff)
 	get_tree().get_root().set_transparent_background(!showStuff)
 
-
 func _on_button_pressed():
-	for viewer in viewers:
-		pass
+	if currentEnemy == null:
+		currentEnemy = enemyScene.instantiate()
+		enemyLocation.add_child(currentEnemy)
+	if !currentEnemy.alive:
+		currentEnemy.spawn()
+	if currentViewerIndex < viewers.size():
+		viewers[currentViewerIndex].visible = true
+		viewers[currentViewerIndex].attack(currentEnemy)

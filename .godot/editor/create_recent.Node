@@ -1,3 +1,6 @@
+Label
+SubViewport
+SubViewportContainer
 Node3D
 Label3D
 CSGMesh3D
@@ -5,8 +8,6 @@ HBoxContainer
 CenterContainer
 Button
 CheckButton
-SubViewport
-SubViewportContainer
 AnimationPlayer
 DirectionalLight3D
 CollisionShape3D

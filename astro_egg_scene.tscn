@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://cegpyaaeeadh7"]
+
+[ext_resource type="Script" path="res://Viewer.gd" id="1_afdh7"]
+[ext_resource type="PackedScene" uid="uid://dq5753s784jdw" path="res://export/astro_egg_1.gltf" id="2_q5moo"]
+
+[node name="AstroEgg" type="Node3D"]
+script = ExtResource("1_afdh7")
+
+[node name="astro_egg_1" parent="." instance=ExtResource("2_q5moo")]
+
+[node name="AstroEgg" parent="astro_egg_1/Node2" index="0"]
+transform = Transform3D(0.906308, -0.422618, 0, 0.422618, 0.906308, 0, 0, 0, 1, 0.00671497, -0.520833, -0.189549)
+
+[node name="Arm" parent="astro_egg_1/Node2/AstroEgg" index="3"]
+transform = Transform3D(1, 0, 0, 0, 0.21644, 0.976296, 0, -0.976296, 0.21644, -0.00671497, 0.583333, 0.728612)
+
+[node name="Arm2" parent="astro_egg_1/Node2/AstroEgg" index="4"]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -0.00671497, 0.583333, -0.474513)
+
+[node name="Leg2" parent="astro_egg_1/Node2/AstroEgg" index="6"]
+transform = Transform3D(0.906308, 0.422618, 0, -0.422618, 0.906308, 0, 0, 0, 1, 0, 0, 0)
+
+[connection signal="animation_finished" from="astro_egg_1/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+
+[editable path="astro_egg_1"]

@@ -1,7 +1,9 @@
 class_name Enemy extends Node3D
 
 var health: int
-var alive: bool
+var maxHealth: int
+var alive: bool = false
+var level: int
 
 @onready var healthLabel :Label3D = $HealthLabel
 
@@ -10,14 +12,16 @@ func loseHealth(damage:int):
 	if health <= 0:
 		alive = false
 		healthLabel.visible = false
-	healthLabel.text = "%i/10" % health 
+		level += 1
+	healthLabel.text = "%d/%d" % [health, maxHealth]
 
 func spawn():
 	alive = true
-	health = 10
-	healthLabel.text = "10/10"
+	maxHealth = 10 + level * 5
+	health = maxHealth
+	print(healthLabel)
+	healthLabel.text = "%d/%d" % [health, maxHealth]
 	healthLabel.visible = true
-	
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

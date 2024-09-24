@@ -1,3 +1,6 @@
 res://Main.tscn
 res://Viewer.gd
 res://Enemy.gd
+res://Main.gd
+res://enemy_scene.tscn
+res://astro_egg_scene.tscn
