@@ -1,22 +1,82 @@
-[gd_scene load_steps=4 format=3 uid="uid://cc84icb5usx00"]
+[gd_scene load_steps=10 format=3 uid="uid://cc84icb5usx00"]
 
-[ext_resource type="Script" path="res://Main.gd" id="1_en8i4"]
-[ext_resource type="Texture2D" uid="uid://4ygery60r2ol" path="res://ursalogo.png" id="1_k0tud"]
+[ext_resource type="Script" path="res://Main.gd" id="1_g2pg7"]
+[ext_resource type="Script" path="res://Enemy.gd" id="2_23agk"]
+[ext_resource type="PackedScene" uid="uid://ywgd33f3hrkr" path="res://export/enemy.gltf" id="3_vjr2h"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ftlwt"]
-size = Vector2(542, 681)
+[sub_resource type="BoxMesh" id="BoxMesh_txutx"]
 
-[node name="Node2D" type="Node2D"]
-script = ExtResource("1_en8i4")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wxkqp"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(604, 322)
-texture = ExtResource("1_k0tud")
+[sub_resource type="SystemFont" id="SystemFont_t31ai"]
 
-[node name="Area2D" type="Area2D" parent="."]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q6y6v"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(603, 330.5)
-shape = SubResource("RectangleShape2D_ftlwt")
+[sub_resource type="SystemFont" id="SystemFont_xr0vt"]
+subpixel_positioning = 0
 
-[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_of6pq"]
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_g2pg7")
+
+[node name="AstroEggLocation" type="Node3D" parent="."]
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="AstroEggLocation"]
+transform = Transform3D(1, 0, 0, 0, 0.294066, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_txutx")
+material = SubResource("StandardMaterial3D_wxkqp")
+
+[node name="EnemyLocation" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52952, 0, 0)
+
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="EnemyLocation"]
+transform = Transform3D(1, 0, 0, 0, 0.332587, 0, 0, 0, 1, 0, 0, 0)
+visible = false
+mesh = SubResource("BoxMesh_txutx")
+material = SubResource("StandardMaterial3D_wxkqp")
+
+[node name="Enemy" type="Node3D" parent="EnemyLocation"]
+script = ExtResource("2_23agk")
+
+[node name="HealthLabel" type="Label3D" parent="EnemyLocation/Enemy"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.17539, 0)
+billboard = 1
+text = "10/10"
+font = SubResource("SystemFont_t31ai")
+font_size = 64
+
+[node name="enemy" parent="EnemyLocation/Enemy" instance=ExtResource("3_vjr2h")]
+transform = Transform3D(-3, 1.04636e-15, -2.62268e-07, 1.04636e-15, 3, -1.04636e-15, 2.62268e-07, -1.04636e-15, -3, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.992757, -0.0477121, 0.110256, 3.20101e-16, 0.917755, 0.397147, -0.120137, -0.394271, 0.911108, 1.2, 1.5, 3)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.995737, -0.0909887, 0.0151056, 0.0620217, 0.781749, 0.620501, -0.0682673, -0.616919, 0.78406, 1.95041, 1.52022, 2.65435)
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+scale = Vector2(3, 3)
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SubViewportContainer/SubViewport"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CheckButton" type="CheckButton" parent="SubViewportContainer/SubViewport/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_q6y6v")
+button_pressed = true
+
+[node name="Button" type="Button" parent="SubViewportContainer/SubViewport/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_xr0vt")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_of6pq")
+text = "⚔️"
+
+[connection signal="toggled" from="SubViewportContainer/SubViewport/HBoxContainer/CheckButton" to="." method="_on_check_button_toggled"]
+[connection signal="pressed" from="SubViewportContainer/SubViewport/HBoxContainer/Button" to="." method="_on_button_pressed"]

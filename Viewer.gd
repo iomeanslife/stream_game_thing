@@ -11,6 +11,11 @@ static func create(nameParam: String) -> Viewer:
 	viewer.viewerName = nameParam
 	return viewer
 	
+static func createDebug() -> Viewer:
+	var viewer = Viewer.new()
+	viewer.viewerName = str( viewer.get_instance_id())
+	return viewer
+
 func refresh():
 	attacked = false
 

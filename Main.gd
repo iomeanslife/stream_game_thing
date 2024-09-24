@@ -1,22 +1,28 @@
-extends Node2D
+extends Node3D
 
-var hideStuff = true
+var showStuff = true
 var viewers: Array
+var currentViewerIndex: int
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_TRANSPARENT,hideStuff)
-	get_tree().get_root().set_transparent_background(hideStuff)
-	viewers
-	pass
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_TRANSPARENT,false)
+	get_tree().get_root().set_transparent_background(false)
+	
+	# TODO: fill viewer from twitch api, only followers.
+	
+	for n in 10:
+		viewers.append(Viewer.createDebug())
+	
 func _process(delta):
 	pass
 
+func _on_check_button_toggled(button_pressed):
+	showStuff = button_pressed
+	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_TRANSPARENT,!showStuff)
+	get_tree().get_root().set_transparent_background(!showStuff)
 
-func on_click():
-	hideStuff = !hideStuff
-	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_TRANSPARENT,hideStuff)
-	get_tree().get_root().set_transparent_background(hideStuff)
-	
+
+func _on_button_pressed():
+	for viewer in viewers:
+		pass
