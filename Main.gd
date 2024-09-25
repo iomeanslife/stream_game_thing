@@ -4,11 +4,14 @@ var showStuff = true
 var viewers: Array
 var currentViewerIndex: int
 var currentEnemy: Enemy
+var assaultRound: int = 0
+
 @export var enemyScene: PackedScene
 @export var astroEggScene: PackedScene
 
 @onready var enemyLocation = $EnemyLocation
 @onready var astroEggLocation = $AstroEggLocation
+@onready var roundLabel = $SubViewportContainer/SubViewport/HBoxContainer/RoundCounter
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -28,10 +31,9 @@ func _process(delta):
 	pass
 
 func _egg_attacked(emitterId: int):
-	if currentViewerIndex >= viewers.size():
+	if currentViewerIndex >= viewers.size() || !currentEnemy.alive  || viewers[currentViewerIndex].get_instance_id() != emitterId:
 		return
-	if !currentEnemy.alive:
-		return
+	
 	viewers[currentViewerIndex].visible = false
 	currentViewerIndex += 1
 	if currentViewerIndex < viewers.size():
@@ -43,7 +45,15 @@ func _on_check_button_toggled(button_pressed):
 	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_TRANSPARENT,!showStuff)
 	get_tree().get_root().set_transparent_background(!showStuff)
 
-func _on_button_pressed():
+func _on_button_pressed():	
+	if currentViewerIndex < viewers.size():
+		viewers[currentViewerIndex].visible = false
+	assaultRound += 1
+	roundLabel.text = "Round %d" %assaultRound
+	currentViewerIndex = 0
+	randomize()
+	viewers.shuffle()
+	
 	if currentEnemy == null:
 		currentEnemy = enemyScene.instantiate()
 		enemyLocation.add_child(currentEnemy)

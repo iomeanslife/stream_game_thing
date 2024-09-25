@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cc84icb5usx00"]
+[gd_scene load_steps=10 format=3 uid="uid://cc84icb5usx00"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_g2pg7"]
 [ext_resource type="PackedScene" uid="uid://bvvuekqxksrka" path="res://enemy_scene.tscn" id="2_tw8e5"]
@@ -8,12 +8,14 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wxkqp"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q6y6v"]
-
 [sub_resource type="SystemFont" id="SystemFont_xr0vt"]
 subpixel_positioning = 0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_of6pq"]
+
+[sub_resource type="SystemFont" id="SystemFont_ddrbr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q6y6v"]
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_g2pg7")
@@ -38,33 +40,46 @@ mesh = SubResource("BoxMesh_txutx")
 material = SubResource("StandardMaterial3D_wxkqp")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.992757, -0.0387259, 0.113724, 6.9432e-10, 0.946621, 0.322348, -0.120137, -0.320013, 0.939765, 1.14665, 1.5, 3.00646)
+transform = Transform3D(0.992757, -0.0387259, 0.113724, 6.9432e-10, 0.946621, 0.322348, -0.120137, -0.320013, 0.939765, 1.12712, 1.97736, 2.84508)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.995737, -0.0909887, 0.0151056, 0.0620217, 0.781749, 0.620501, -0.0682673, -0.616919, 0.78406, 1.95041, 1.52022, 2.65435)
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
-scale = Vector2(3, 3)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -1151.0
+offset_bottom = 512.0
+grow_horizontal = 0
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 transparent_bg = true
 handle_input_locally = false
+size = Vector2i(1024, 512)
 render_target_update_mode = 4
 
 [node name="HBoxContainer" type="HBoxContainer" parent="SubViewportContainer/SubViewport"]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 201.0
+offset_bottom = 183.0
+
+[node name="Button" type="Button" parent="SubViewportContainer/SubViewport/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_xr0vt")
+theme_override_font_sizes/font_size = 128
+theme_override_styles/focus = SubResource("StyleBoxEmpty_of6pq")
+text = "⚔️"
+
+[node name="RoundCounter" type="Label" parent="SubViewportContainer/SubViewport/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_ddrbr")
+theme_override_font_sizes/font_size = 32
+text = "Round 0"
 
 [node name="CheckButton" type="CheckButton" parent="SubViewportContainer/SubViewport/HBoxContainer"]
 layout_mode = 2
 theme_override_styles/focus = SubResource("StyleBoxEmpty_q6y6v")
 button_pressed = true
 
-[node name="Button" type="Button" parent="SubViewportContainer/SubViewport/HBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = SubResource("SystemFont_xr0vt")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_of6pq")
-text = "⚔️"
-
-[connection signal="toggled" from="SubViewportContainer/SubViewport/HBoxContainer/CheckButton" to="." method="_on_check_button_toggled"]
 [connection signal="pressed" from="SubViewportContainer/SubViewport/HBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="toggled" from="SubViewportContainer/SubViewport/HBoxContainer/CheckButton" to="." method="_on_check_button_toggled"]
