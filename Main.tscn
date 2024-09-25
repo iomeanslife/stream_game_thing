@@ -29,7 +29,7 @@ mesh = SubResource("BoxMesh_txutx")
 material = SubResource("StandardMaterial3D_wxkqp")
 
 [node name="EnemyLocation" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52952, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.07626, 0, 0.35123)
 
 [node name="CSGMesh3D2" type="CSGMesh3D" parent="EnemyLocation"]
 transform = Transform3D(1, 0, 0, 0, 0.332587, 0, 0, 0, 1, 0, 0, 0)
@@ -38,7 +38,7 @@ mesh = SubResource("BoxMesh_txutx")
 material = SubResource("StandardMaterial3D_wxkqp")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.992757, -0.0477121, 0.110256, 3.20101e-16, 0.917755, 0.397147, -0.120137, -0.394271, 0.911108, 1.2, 1.5, 3)
+transform = Transform3D(0.992757, -0.0387259, 0.113724, 6.9432e-10, 0.946621, 0.322348, -0.120137, -0.320013, 0.939765, 1.14665, 1.5, 3.00646)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.995737, -0.0909887, 0.0151056, 0.0620217, 0.781749, 0.620501, -0.0682673, -0.616919, 0.78406, 1.95041, 1.52022, 2.65435)

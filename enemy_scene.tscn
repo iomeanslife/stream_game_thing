@@ -11,6 +11,7 @@ script = ExtResource("1_607hv")
 [node name="HealthLabel" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.17539, 0)
 billboard = 1
+alpha_cut = 1
 text = "10/10"
 font = SubResource("SystemFont_t31ai")
 font_size = 64

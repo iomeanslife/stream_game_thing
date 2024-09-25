@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cegpyaaeeadh7"]
+[gd_scene load_steps=4 format=3 uid="uid://cegpyaaeeadh7"]
 
 [ext_resource type="Script" path="res://Viewer.gd" id="1_afdh7"]
 [ext_resource type="PackedScene" uid="uid://dq5753s784jdw" path="res://export/astro_egg_1.gltf" id="2_q5moo"]
+[ext_resource type="PackedScene" uid="uid://25iy6ag1v1hr" path="res://export/sword.gltf" id="3_sl7yl"]
 
 [node name="AstroEgg" type="Node3D"]
 script = ExtResource("1_afdh7")
@@ -11,8 +12,14 @@ script = ExtResource("1_afdh7")
 [node name="AstroEgg" parent="astro_egg_1/Node2" index="0"]
 transform = Transform3D(0.906308, -0.422618, 0, 0.422618, 0.906308, 0, 0, 0, 1, 0.00671497, -0.520833, -0.189549)
 
+[node name="Body" parent="astro_egg_1/Node2/AstroEgg" index="1"]
+transform = Transform3D(1, -8.64073e-11, 0, 5.49809e-09, 1, 0, 0, 0, 1, -0.00671494, 0.520833, 0.189549)
+
 [node name="Arm" parent="astro_egg_1/Node2/AstroEgg" index="3"]
 transform = Transform3D(1, 0, 0, 0, 0.21644, 0.976296, 0, -0.976296, 0.21644, -0.00671497, 0.583333, 0.728612)
+
+[node name="sword" parent="astro_egg_1/Node2/AstroEgg/Arm/tube" index="0" instance=ExtResource("3_sl7yl")]
+transform = Transform3D(0.333174, -2.42149e-07, -1.65683, -1.64585, 0.194244, -0.330966, 0.190432, 1.6788, 0.0382938, 0.175481, 0.0863621, 0.439389)
 
 [node name="Arm2" parent="astro_egg_1/Node2/AstroEgg" index="4"]
 transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -0.00671497, 0.583333, -0.474513)
