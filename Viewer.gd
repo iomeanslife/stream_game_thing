@@ -8,17 +8,22 @@ var attackType: AttackTypes
 var enemyToAttack: Enemy
 
 @onready var animationPlayer = $astro_egg_1/AnimationPlayer
+@onready var nameLabel = $NameLabel
+signal attackDone
 # Called when the node enters the scene tree for the first time.
 
-static func create(nameParam: String) -> Viewer:
-	var viewer = Viewer.new()
-	viewer.viewerName = nameParam
-	return viewer
-	
-static func createDebug() -> Viewer:
-	var viewer = Viewer.new()
-	viewer.viewerName = str( viewer.get_instance_id())
-	return viewer
+func prepViwer(nameParam: String):
+	setName(nameParam)
+
+func prepViwerDebug():
+	setName(str(get_instance_id()))
+
+func setName(nameParam: String):
+	viewerName = nameParam
+	nameLabel.text = viewerName
+
+func _ready():
+	pass
 
 func refresh():
 	attacked = false
@@ -29,14 +34,21 @@ func changeAttack(attackTypeParam:AttackTypes):
 func attack(enemyParam: Enemy):
 	animationPlayer.play("attack_animation",-1,1,false)
 	enemyToAttack = enemyParam
-	
 
 func _on_animation_player_animation_finished(anim_name):
+	var enemyDefeated = false
+	if anim_name == "walking_animation":
+		animationPlayer.play("walking_animation",-1,1,false)
 	if anim_name == "attack_animation":
 		match attackType:
 			(AttackTypes.Flail):
-				enemyToAttack.loseHealth(1)
+				enemyDefeated = enemyToAttack.loseHealth(1)
 			(AttackTypes.Sword):
-				enemyToAttack.loseHealth(3)
-	#animationPlayer.play("attack_animation",-1,1,false)
+				enemyDefeated = enemyToAttack.loseHealth(3)
+	
+	if enemyDefeated:
+		animationPlayer.play("walking_animation",-1,1,false)
+	else:
+		attackDone.emit(get_instance_id())
+		pass
 

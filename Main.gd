@@ -7,7 +7,6 @@ var currentEnemy: Enemy
 @export var enemyScene: PackedScene
 @export var astroEggScene: PackedScene
 
-
 @onready var enemyLocation = $EnemyLocation
 @onready var astroEggLocation = $AstroEggLocation
 
@@ -17,15 +16,28 @@ func _ready():
 	get_tree().get_root().set_transparent_background(false)
 	
 	# TODO: fill viewer from twitch api, only followers.
-	for n in 10:
+	for n in 20:
 		var astroEggInst : Viewer = astroEggScene.instantiate()
 		astroEggLocation.add_child(astroEggInst)
+		astroEggInst.prepViwerDebug()
 		astroEggInst.visible = false
+		astroEggInst.attackDone.connect(_egg_attacked)
 		viewers.append(astroEggInst)
 	
 func _process(delta):
 	pass
 
+func _egg_attacked(emitterId: int):
+	if currentViewerIndex >= viewers.size():
+		return
+	if !currentEnemy.alive:
+		return
+	viewers[currentViewerIndex].visible = false
+	currentViewerIndex += 1
+	if currentViewerIndex < viewers.size():
+		viewers[currentViewerIndex].visible = true
+		viewers[currentViewerIndex].attack(currentEnemy)
+	
 func _on_check_button_toggled(button_pressed):
 	showStuff = button_pressed
 	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_TRANSPARENT,!showStuff)
