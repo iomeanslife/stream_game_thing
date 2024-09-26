@@ -1,3 +1,7 @@
+AspectRatioContainer
+CenterContainer
+ProgressBar
+Timer
 Label
 Label3D
 CSGMesh3D
@@ -5,7 +9,6 @@ SubViewport
 SubViewportContainer
 Node3D
 HBoxContainer
-CenterContainer
 Button
 CheckButton
 AnimationPlayer

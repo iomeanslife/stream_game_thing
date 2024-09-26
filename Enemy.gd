@@ -8,6 +8,8 @@ var level: int
 @onready var healthLabel :Label3D = $HealthLabel
 @onready var enemyModel: Node3D = $enemy
 
+signal died
+
 func loseHealth(damage:int) -> bool:
 	health -= damage
 	if health <= 0:
@@ -15,6 +17,7 @@ func loseHealth(damage:int) -> bool:
 		healthLabel.visible = false
 		visible = false
 		level += 1
+		died.emit()
 	healthLabel.text = "%d/%d" % [health, maxHealth]
 	return !alive
 
