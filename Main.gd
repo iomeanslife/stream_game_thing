@@ -21,7 +21,6 @@ func _ready():
 	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_TRANSPARENT,false)
 	get_tree().get_root().set_transparent_background(false)
 	hBoxContainer.modulate.a = 0.5
-	timer.process_callback
 	
 	# TODO: fill viewer from twitch api, only followers.
 	for n in 20:
@@ -31,7 +30,7 @@ func _ready():
 		astroEggInst.visible = false
 		astroEggInst.attackDone.connect(_egg_attacked)
 		viewers.append(astroEggInst)
-	
+
 func _process(delta):
 	progressBar.value = timer.wait_time - timer.time_left
 	pass
@@ -47,7 +46,6 @@ func _egg_attacked(emitterId: int):
 		viewers[currentViewerIndex].attack(currentEnemy)
 	else:
 		timer.start()
-		
 
 func start_battle():
 	if currentViewerIndex < viewers.size():
@@ -73,7 +71,6 @@ func  _on_enemy_died():
 	if timer.is_stopped():
 		timer.start()
 
-
 func _on_check_button_toggled(button_pressed):
 	showStuff = button_pressed
 	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_TRANSPARENT,!showStuff)
@@ -81,7 +78,6 @@ func _on_check_button_toggled(button_pressed):
 
 func _on_button_pressed():
 	start_battle()
-		
 
 func _on_h_box_container_mouse_entered():
 	hBoxContainer.modulate.a = 1

@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://cc84icb5usx00"]
+[gd_scene load_steps=11 format=3 uid="uid://cc84icb5usx00"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_g2pg7"]
 [ext_resource type="PackedScene" uid="uid://bvvuekqxksrka" path="res://enemy_scene.tscn" id="2_tw8e5"]
 [ext_resource type="PackedScene" uid="uid://cegpyaaeeadh7" path="res://astro_egg_scene.tscn" id="3_3c0gv"]
+[ext_resource type="Script" path="res://WebStuff.gd" id="4_dp571"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_txutx"]
 
@@ -21,6 +22,9 @@ subpixel_positioning = 0
 script = ExtResource("1_g2pg7")
 enemyScene = ExtResource("2_tw8e5")
 astroEggScene = ExtResource("3_3c0gv")
+
+[node name="WebStuff" type="Node" parent="."]
+script = ExtResource("4_dp571")
 
 [node name="AstroEggLocation" type="Node3D" parent="."]
 

@@ -1,3 +1,6 @@
+Node
+HTTPRequest
+Node3D
 AspectRatioContainer
 CenterContainer
 ProgressBar
@@ -7,7 +10,6 @@ Label3D
 CSGMesh3D
 SubViewport
 SubViewportContainer
-Node3D
 HBoxContainer
 Button
 CheckButton
