@@ -1,4 +1,4 @@
 res://Main.tscn
-res://Main.gd
-res://Enemy.gd
 res://WebStuff.gd
+res://TwitchCallBackRouter.gd
+res://Main.gd

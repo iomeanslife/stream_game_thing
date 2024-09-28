@@ -50,4 +50,3 @@ func _on_animation_player_animation_finished(anim_name):
 		animationPlayer.play("walking_animation",-1,1,false)
 	else:
 		attackDone.emit(get_instance_id())
-

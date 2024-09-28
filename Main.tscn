@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Main.gd" id="1_g2pg7"]
 [ext_resource type="PackedScene" uid="uid://bvvuekqxksrka" path="res://enemy_scene.tscn" id="2_tw8e5"]
 [ext_resource type="PackedScene" uid="uid://cegpyaaeeadh7" path="res://astro_egg_scene.tscn" id="3_3c0gv"]
-[ext_resource type="Script" path="res://WebStuff.gd" id="4_dp571"]
+[ext_resource type="PackedScene" uid="uid://bqwpi4c7bnox3" path="res://web_stuff.tscn" id="4_fbnr4"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_txutx"]
 
@@ -23,8 +23,7 @@ script = ExtResource("1_g2pg7")
 enemyScene = ExtResource("2_tw8e5")
 astroEggScene = ExtResource("3_3c0gv")
 
-[node name="WebStuff" type="Node" parent="."]
-script = ExtResource("4_dp571")
+[node name="WebStuff" parent="." instance=ExtResource("4_fbnr4")]
 
 [node name="AstroEggLocation" type="Node3D" parent="."]
 
@@ -76,13 +75,20 @@ offset_right = 304.0
 offset_bottom = 100.0
 
 [node name="Button" type="Button" parent="SubViewportContainer/SubViewport/HBoxContainer"]
-visible = false
 layout_mode = 2
 mouse_filter = 1
 theme_override_fonts/font = SubResource("SystemFont_xr0vt")
 theme_override_font_sizes/font_size = 128
 theme_override_styles/focus = SubResource("StyleBoxEmpty_of6pq")
-text = "⚔️"
+text = "T"
+
+[node name="AccessToken" type="LineEdit" parent="SubViewportContainer/SubViewport/HBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+placeholder_text = "access token"
+context_menu_enabled = false
+shortcut_keys_enabled = false
+drag_and_drop_selection_enabled = false
 
 [node name="RoundCounter" type="Label" parent="SubViewportContainer/SubViewport/HBoxContainer"]
 layout_mode = 2
@@ -99,10 +105,10 @@ button_pressed = true
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
-autostart = true
 
 [connection signal="mouse_entered" from="SubViewportContainer/SubViewport/HBoxContainer" to="." method="_on_h_box_container_mouse_entered"]
 [connection signal="mouse_exited" from="SubViewportContainer/SubViewport/HBoxContainer" to="." method="_on_h_box_container_mouse_exited"]
 [connection signal="pressed" from="SubViewportContainer/SubViewport/HBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="text_submitted" from="SubViewportContainer/SubViewport/HBoxContainer/AccessToken" to="." method="_on_access_token_text_submitted"]
 [connection signal="toggled" from="SubViewportContainer/SubViewport/HBoxContainer/CheckButton" to="." method="_on_check_button_toggled"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
