@@ -95,7 +95,7 @@ func _on_timer_timeout():
 	start_battle()
 	
 func _on_access_token_text_submitted(new_text):
-	web_stuff.access_token = new_text
+	web_stuff.set_access_token(new_text)
 	access_token_box.clear()
 	
 func _twitch_ready():
