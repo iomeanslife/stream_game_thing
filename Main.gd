@@ -27,15 +27,15 @@ func _ready():
 	web_stuff.twitch_ready.connect(_twitch_ready)
 	
 	# TODO: fill viewer from twitch api, only followers.
-	for n in 20:
-		var astroEggInst : Viewer = astroEggScene.instantiate()
-		astroEggLocation.add_child(astroEggInst)
-		astroEggInst.prepViwerDebug()
-		astroEggInst.visible = false
-		astroEggInst.attackDone.connect(_egg_attacked)
-		viewers.append(astroEggInst)
+	#for n in 20:
+		#var astroEggInst : Viewer = astroEggScene.instantiate()
+		#astroEggLocation.add_child(astroEggInst)
+		#astroEggInst.prepViwerDebug()
+		#astroEggInst.visible = false
+		#astroEggInst.attackDone.connect(_egg_attacked)
+		#viewers.append(astroEggInst)
 
-func _process(delta):
+func _process(_delta):
 	progressBar.value = timer.wait_time - timer.time_left
 	pass
 
@@ -49,7 +49,8 @@ func _egg_attacked(emitterId: int):
 		viewers[currentViewerIndex].visible = true
 		viewers[currentViewerIndex].attack(currentEnemy)
 	else:
-		timer.start()
+		web_stuff.reload_viewers()
+		# timer.start()
 
 func start_battle():
 	if currentViewerIndex < viewers.size():
@@ -98,6 +99,15 @@ func _on_access_token_text_submitted(new_text):
 	web_stuff.set_access_token(new_text)
 	access_token_box.clear()
 	
-func _twitch_ready():
+func _twitch_ready(names:Array[String]):
+	viewers.clear()
+	
+	for chatter in names:
+		var astroEggInst : Viewer = astroEggScene.instantiate()
+		astroEggLocation.add_child(astroEggInst)
+		astroEggInst.prepViwer(chatter)
+		astroEggInst.visible = false
+		astroEggInst.attackDone.connect(_egg_attacked)
+		viewers.append(astroEggInst)
 	timer.start()
 	pass

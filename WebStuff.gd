@@ -8,9 +8,13 @@ var client_id :String
 var client_secret :String
 var socket = WebSocketPeer.new()
 var access_token :String
-var user_id :String = "940492711"
+# var user_id :String = "940492711"
+var user_id :String = "43461127"
+# var user_id :String
+
 @onready var http_request = $HTTPRequest
-signal twitch_ready
+
+signal twitch_ready(viewers: Array[String])
 
 func parse_data(data :Variant):
 	if data["metadata"]["message_type"] == "session_welcome":
@@ -22,18 +26,28 @@ func _twitch_response(request):
 	
 func set_access_token(text :String):
 	access_token = text
-	if (user_id == "" || user_id == null):
-		var headers : Array = ["Authorization: Bearer {0}".format([access_token]), "Client-Id: {0}".format([client_id])]
-		var url = "https://api.twitch.tv/helix/users?login=astroursafromspace"
-		http_request.request(url, headers, HTTPClient.METHOD_GET)
-		# $HTTPRequest.request("https://api.github.com/repos/godotengine/godot/releases/latest")
+	#if (user_id == "" || user_id == null):
+		
+	reload_viewers()
 
-
-	
-func _on_request_completed(result, response_code, headers, body):
-	print(result)
+func _on_request_completed(_result, _response_code, _headers, body):
+	print(_result)
 	var json = JSON.parse_string(body.get_string_from_utf8())
-	pass
+	var chattersCount = json["data"].size()
+	var viewers : Array[String] 
+	for n in chattersCount:
+		var res = json["data"][n]["user_name"]
+		print(res)
+		viewers.append(res)
+	twitch_ready.emit(viewers)
+
+func reload_viewers():
+	var headers : Array = ["Authorization: Bearer {0}".format([access_token]), "Client-Id: {0}".format([client_id])]
+	# var url = "https://api.twitch.tv/helix/users?login=astroursafromspace"
+	# var url = "https://api.twitch.tv/helix/users?login=iomeanslife"
+	var url = "https://api.twitch.tv/helix/chat/chatters?broadcaster_id={0}&moderator_id={0}".format([user_id])
+
+	http_request.request(url, headers, HTTPClient.METHOD_GET)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -72,7 +86,7 @@ func _ready():
 	# socket.send_text("text")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	
 	
 	pass
