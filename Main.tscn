@@ -51,13 +51,13 @@ transform = Transform3D(0.992757, -0.0387259, 0.113724, 6.9432e-10, 0.946621, 0.
 transform = Transform3D(0.995737, -0.0909887, 0.0151056, 0.0620217, 0.781749, 0.620501, -0.0682673, -0.616919, 0.78406, 1.95041, 1.52022, 2.65435)
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
-offset_right = 512.0
-offset_bottom = 100.0
+offset_right = 987.0
+offset_bottom = 191.0
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 transparent_bg = true
 handle_input_locally = false
-size = Vector2i(512, 100)
+size = Vector2i(1024, 200)
 render_target_update_mode = 4
 
 [node name="ProgressBar" type="ProgressBar" parent="SubViewportContainer/SubViewport"]
