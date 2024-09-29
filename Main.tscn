@@ -25,6 +25,8 @@ astroEggScene = ExtResource("3_3c0gv")
 
 [node name="WebStuff" parent="." instance=ExtResource("4_fbnr4")]
 
+[node name="HTTPRequest" type="HTTPRequest" parent="WebStuff"]
+
 [node name="AstroEggLocation" type="Node3D" parent="."]
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="AstroEggLocation"]
@@ -87,7 +89,6 @@ custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 placeholder_text = "access token"
 context_menu_enabled = false
-shortcut_keys_enabled = false
 drag_and_drop_selection_enabled = false
 
 [node name="RoundCounter" type="Label" parent="SubViewportContainer/SubViewport/HBoxContainer"]

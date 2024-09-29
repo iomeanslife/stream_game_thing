@@ -1,7 +1,7 @@
+HTTPRequest
 LineEdit
 TextEdit
 Node
-HTTPRequest
 Node3D
 AspectRatioContainer
 CenterContainer
@@ -12,4 +12,3 @@ Label3D
 CSGMesh3D
 SubViewport
 SubViewportContainer
-HBoxContainer
