@@ -1,5 +1,5 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1727613665
+::res://::1728453312
 arm_texture2.png::CompressedTexture2D::5399520096642915874::1727021576::1727613666::1::::<><>::
 arm_texture.png::CompressedTexture2D::4276081597550242551::1727021494::1727613666::1::::<><>::
 astro_egg_1.gd::GDScript::-1::1727095957::0::1::::<>Node3D<>::
@@ -16,7 +16,7 @@ icon.svg::CompressedTexture2D::2420548873185874387::1726677150::1727613666::1:::
 leg_texture.png::CompressedTexture2D::6226861457978681100::1727026168::1727613666::1::::<><>::
 lower_suit_texture.png::CompressedTexture2D::578392505867116902::1727026168::1727613666::1::::<><>::
 Main.gd::GDScript::-1::1727613655::0::1::::<>Node3D<>::
-Main.tscn::PackedScene::4983118707669735191::1727605669::0::1::::<><>::res://Main.gd<>uid://bvvuekqxksrka::::res://enemy_scene.tscn<>uid://cegpyaaeeadh7::::res://astro_egg_scene.tscn<>uid://bqwpi4c7bnox3::::res://web_stuff.tscn
+Main.tscn::PackedScene::4983118707669735191::1727614708::0::1::::<><>::res://Main.gd<>uid://bvvuekqxksrka::::res://enemy_scene.tscn<>uid://cegpyaaeeadh7::::res://astro_egg_scene.tscn<>uid://bqwpi4c7bnox3::::res://web_stuff.tscn
 node_3d.tscn::PackedScene::830882993163091431::1726729924::0::1::::<><>::res://CSGBox3D.gd
 README.md::TextFile::-1::1726941242::0::1::::<><>::
 rock_board_texture.png::CompressedTexture2D::7485632921618623598::1727091686::1727613666::1::::<><>::
@@ -33,7 +33,7 @@ ufo_wing_2_texture.png::CompressedTexture2D::8904935102215018934::1727595951::17
 ufo_wing_texture.png::CompressedTexture2D::8023099617711706375::1727595951::1727613666::1::::<><>::
 ursalogo.png::CompressedTexture2D::2085393908147456971::1726728403::1727613666::1::::<><>::
 Viewer.gd::GDScript::-1::1727595951::0::1::::Viewer<>Node3D<>::
-WebStuff.gd::GDScript::-1::1727613655::0::1::::<>Node<>::
+WebStuff.gd::GDScript::-1::1727613939::0::1::::<>Node<>::
 web_stuff.tscn::PackedScene::3555785061456231258::1727595951::0::1::::<><>::res://WebStuff.gd
 ::res://addons/::1727595951
 ::res://addons/godottpd/::1727595951
@@ -44,7 +44,7 @@ http_router.gd::GDScript::-1::1727595951::0::1::::HttpRouter<>RefCounted<>::
 http_server.gd::GDScript::-1::1727595951::0::1::::HttpServer<>Node<>::
 plugin.cfg::TextFile::-1::1727595951::0::1::::<><>::
 plugin.gd::GDScript::-1::1727595951::0::1::::<>EditorPlugin<>::
-::res://export/::1727597442
+::res://export/::1727613666
 astro_egg_1.gltf::PackedScene::8346212899454754840::1727095623::1727613666::1::::<><>::uid://dbogrnw0bnbyv::::res://export/astro_egg_1_0.png<>uid://bpqcgd1g8eshw::::res://export/astro_egg_1_1.png<>uid://qd2w2nd5iomc::::res://export/astro_egg_1_2.png<>uid://d0d5asgfidapm::::res://export/astro_egg_1_3.png<>uid://cqiwd1t0xf27w::::res://export/astro_egg_1_4.png<>uid://oukxbubm8bpo::::res://export/astro_egg_1_5.png<>uid://dbn0k1war8af6::::res://export/astro_egg_1_6.png<>uid://dlk0a5whydvn8::::res://export/astro_egg_1_7.png<>uid://dc5grvh4mlcp::::res://export/astro_egg_1_8.png<>uid://x2abpkuhm0xp::::res://export/astro_egg_1_9.png
 astro_egg_1_0.png::CompressedTexture2D::7258747561654138337::1727095626::1727613666::1::::<><>::
 astro_egg_1_1.png::CompressedTexture2D::3472415729129360700::1727095626::1727613666::1::::<><>::
